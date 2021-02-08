@@ -16,7 +16,6 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const task = await db.findById(id);
-    console.log(task);
     res.status(201).json(task);
   } catch (error) {
     res.status(500).json({ messege: "Error" });
@@ -28,8 +27,8 @@ router.post("/", async (req, res) => {
   try {
     const task = await db.insert(newTask);
     res.status(201).json(task);
-  } catch {
-    res.status(500).json({ messege: "Server error" });
+  } catch (error) {
+    res.status(500).json({ messege: error });
   }
 });
 
